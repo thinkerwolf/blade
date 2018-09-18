@@ -25,6 +25,7 @@ import java.io.IOException;
 import java.net.URLConnection;
 import java.nio.file.Files;
 import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * Http Request Impl
@@ -69,9 +70,9 @@ public class HttpRequest implements Request {
             this.headers = new HashMap<>();
         } else {
             this.headers = new HashMap<>(httpHeaders.size());
-            var entryIterator = httpHeaders.iteratorAsString();
+            Iterator<Entry<String, String>> entryIterator = httpHeaders.iteratorAsString();
             while (entryIterator.hasNext()) {
-                var entry = entryIterator.next();
+            	Entry<String, String> entry = entryIterator.next();
                 headers.put(entry.getKey(), entry.getValue());
             }
         }
